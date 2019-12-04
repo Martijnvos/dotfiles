@@ -1,0 +1,59 @@
+#!/usr/bin/env sh
+# Original script by Luke Smith
+# A dmenu prompt to unmount drives.
+# Provides you with mounted partitions, select one to unmount.
+# Drives mounted at /, /boot and /home will not be options to unmount.
+
+# BE AWARE: this script expects notify-send (with a notification implementation like dunst) and simple-mtpfs to be installed
+
+unmountusb() {
+	# Exit if no unmountable drives are found
+	[ -z "$drives" ] && exit
+	
+	# Ask which drive to unmount with dmenu
+	chosen=$(echo "$drives" | dmenu -i -p "Unmount which drive?" | awk '{print $1}')
+	
+	# Exit if no drive is chosen
+	[ -z "$chosen" ] && exit
+
+	# Unmount the specified drive and show a notification
+	sudo -A umount "$chosen" && notify-send "💻 USB unmounted" "$chosen unmounted."
+}
+
+unmountandroid() { \
+	# Ask which Android device to unmount
+	chosen=$(awk '/simple-mtpfs/ {print $2}' /etc/mtab | dmenu -i -p "Unmount which device?")
+	
+	# Exit if no device is chosen
+	[ -z "$chosen" ] && exit
+
+	# Unmount the device and send show notification
+	sudo -A umount "$chosen" && notify-send "🤖 Android unmounted" "$chosen unmounted."
+}
+
+# Query which type to unmount if both are present
+asktype() { \
+	case "$(printf "USB\\nAndroid" | dmenu -i -p "Unmount a USB drive or Android device?")" in
+		USB) unmountusb ;;
+		Android) unmountandroid ;;
+	esac
+}
+
+# Query the drives that can be unmounted except boot, home and SWAP
+# Also make sure it's a partition by checking for 'part'
+drives=$(lsblk -nrpo "name,type,size,mountpoint" | awk '$2=="part"&&$4!~/\/boot|\/home$|SWAP/&&length($4)>1{printf "%s (%s)\n",$4,$3}')
+
+if ! grep -q simple-mtpfs /etc/mtab; then
+	[ -z "$drives" ] && echo "No drives to unmount." &&  exit
+	echo "Unmountable USB drive detected."
+	unmountusb
+else
+	if [ -z "$drives" ]
+	then
+		echo "Unmountable Android device detected."
+	       	unmountandroid
+	else
+		echo "Unmountable USB drive(s) and Android device(s) detected."
+		asktype
+	fi
+fi

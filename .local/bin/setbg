@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+# Sets the background. If given an argument, will set the defuault background to the given one.
+[ ! -z "$1" ] && cp "$1" ~/.config/wallpaper.jpg && notify-send -i "$HOME/.config/wallpaper.jpg" "Wallpaper changed."
+
+# Set the background manually to prevent .fehbg from being created
+feh --no-fehbg --bg-scale ~/.config/wallpaper.jpg

@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+# This script asks for the user's sudo password using dmenu
+
+# Specify the bg and '1' color of the twilight.dark theme of terminal.sexy
+promptfg=#1e1e1e promptbg=#cf6a4c hidden=#1e1e1e
+
+# Not adding the echo at the end makes sure the password isn't shown in stdout
+dmenu -p "Password for sudo operation:" \
+ -nf "$hidden" -nb "$hidden"  -sf "$promptfg" -sb "$promptbg" <&-

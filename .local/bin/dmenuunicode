@@ -1,0 +1,22 @@
+#!/usr/bin/env sh
+
+# Get a menu of emojis to copy using dmenu.
+# Original author: Luke Smith
+
+# Must have xclip installed to even show menu.
+xclip -h >/dev/null || exit
+
+chosen=$(grep -v "#" ~/.local/share/emoji | dmenu -i -l 20)
+
+# Exit the script if no icon is chosen
+[ "$chosen" != "" ] || exit
+
+# Copy the icon to both primary selection and clipboard
+# Difference between the two: https://unix.stackexchange.com/a/139193
+c=$(echo "$chosen" | sed "s/ .*//")
+echo "$c" | tr -d '\n' | xclip -selection clipboard
+notify-send "'$c' copied to clipboard." &
+
+s=$(echo "$chosen" | sed "s/.*; //" | awk '{print $1}')
+echo "$s" | tr -d '\n' | xclip
+notify-send "'$s' copied to primary." &
