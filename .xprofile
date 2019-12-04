@@ -1,0 +1,8 @@
+# setbg is unnecessary when using Pywal, otherwise it's used to set the background
+# setbg &
+
+# Dunst is started by the ui-update script called from i3 when initializing
+
+# Silence beeping in terminal when no action is possible
+# (down arrow when the history is already cycled through for example)
+xset -b &
