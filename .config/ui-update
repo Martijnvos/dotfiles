@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+# Reload the Pywal configuration
+wal -R
+
+# Pull in the different configuration scripts
+~/.config/polybar/launch &
+~/.config/dunst/dunst_pywal
