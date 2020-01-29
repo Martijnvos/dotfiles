@@ -17,3 +17,8 @@ PS1='[\u@\h \W]\$ '
 ## Sets up the git alias called dotfiles to reference the bare repo in .dotfiles
 # Check the 'Tracking dotfiles directly with Git' subsection under the Dotfiles section in the Arch wiki for more information
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
+
+# Set up NVM
+source /usr/share/nvm/init-nvm.sh
