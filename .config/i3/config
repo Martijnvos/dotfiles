@@ -26,9 +26,6 @@ for_window [class="^.*"] border pixel 2
 gaps inner 15 
 gaps outer 15
 
-# Start nm-applet of NetworkManager for system tray GUI changes to WiFi connections
-exec --no-startup-id nm-applet
-
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
@@ -37,8 +34,8 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 # Use xbacklight to adjust screen brightness
-bindsym XF86MonBrightnessUp exec --no-startup-id  xbacklight -inc 10
-bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
+bindsym XF86MonBrightnessUp exec --no-startup-id  xbacklight -inc 5
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -60,8 +57,8 @@ bindsym $mod+d exec dmenu_run -nb "$fg" -nf "$bg" -sb "$bg" -sf "$fg"
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # Take a screenshot
-bindsym Print exec "scrot '%Y-%m-%d_$wx$h.png' -ue 'mv $f ~/Screenshots/' && notify-send 'Scrot' 'Screenshot saved to ~/Screenshots/'"
-bindsym --release Shift+Print exec "notify-send 'Scrot' 'Make a selection' && scrot '%Y-%m-%d_$wx$h.png' -se 'mv $f ~/Screenshots/' \
+bindsym Shift+Print exec "scrot '%Y-%m-%d_$wx$h.png' -ue 'mv $f ~/Screenshots/' && notify-send 'Scrot' 'Screenshot saved to ~/Screenshots/'"
+bindsym --release Control+Shift+Print exec "notify-send 'Scrot' 'Make a selection' && scrot '%Y-%m-%d_$wx$h.png' -se 'mv $f ~/Screenshots/' \
   && notify-send 'Scrot' 'Screenshot saved to ~/Screenshots/'"
 
 # change focus
@@ -170,6 +167,9 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+
+# Enable the Android emulator to float
+for_window [title=".*Emulator.*"] floating enable
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
