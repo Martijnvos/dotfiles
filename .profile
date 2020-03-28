@@ -1,5 +1,5 @@
 #
-# ~/.bash_profile
+# ~/.profile
 #
 
 export BROWSER="brave"
