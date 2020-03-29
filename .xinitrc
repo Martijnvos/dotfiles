@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Make sure natural scrolling is always turned on for the trackpad
 xinput --set-prop "SYNA8005:00 06CB:CD8C Touchpad" "libinput Natural Scrolling Enabled" 1
 
@@ -6,5 +8,8 @@ setxkbmap -option compose:lwin
 
 # Notify autorandr of screen change because of startup
 autorandr --change
+
+# Setup default UI elements like Pywal, polybar and dunst
+setup-ui
 
 exec i3
