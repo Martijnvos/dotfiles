@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/sh
 
 # Get a menu of emojis to copy using dmenu.
 # Original author: Luke Smith

@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/sh
 # This script asks for the user's sudo password using dmenu
 
 # Specify the bg and '1' color of the twilight.dark theme of terminal.sexy

@@ -1,4 +1,5 @@
-#!/usr/bin/env sh
+#!/bin/sh
+
 # Original script by Luke Smith
 # Gives a dmenu prompt to mount unmounted drives.
 # If they're in /etc/fstab, they'll be mounted automatically.
