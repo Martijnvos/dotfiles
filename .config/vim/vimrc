@@ -1,0 +1,67 @@
+" When started as "evim", evim.vim will already have done these settings, bail
+" out.
+if v:progname =~? "evim"
+  finish
+endif
+
+" Check if the vim-plug plugin manager is installed
+" If not, install and configure it
+if empty(glob('~/.config/vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.config/vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+" Uncomment this to add plugins using vim-plug
+"call plug#begin('~/.config/vim/plugged')
+"call plug#end()
+
+" Get the defaults that most users want.
+" This will set nocompabitle and enable filetype recognition & syntax highlighting 
+source $VIMRUNTIME/defaults.vim
+
+" Configure XDG locations
+set runtimepath+=~/.config/vim,~/.config/vim/after
+set viminfo+=n~/.config/vim/viminfo
+set directory=~/.config/vim/swap//,.,~/tmp,/var/tmp,/tmp
+set backupdir=~/.config/vim/backup//,.,~/tmp,~/
+set undodir=~/.config/vim/undo//,.
+
+" Splits open at the bottom and right, instead of top and left which is the
+" default
+set splitbelow splitright
+
+" Show relative line numbering
+set number relativenumber
+	
+if has("vms")
+  set nobackup		" do not keep a backup file, use versions instead
+else
+  set backup		" keep a backup file (restore to previous version)
+  if has('persistent_undo')
+    set undofile	" keep an undo file (undo changes after closing)
+  endif
+endif
+
+if &t_Co > 2 || has("gui_running")
+  " Switch on highlighting the last used search pattern.
+  set hlsearch
+endif
+
+" Put these in an autocmd group, so that we can delete them easily.
+augroup vimrcEx
+  au!
+
+  " For all text files set 'textwidth' to 78 characters.
+  autocmd FileType text setlocal textwidth=78
+augroup END
+
+" Add optional packages.
+"
+" The matchit plugin makes the % command work better, but it is not backwards
+" compatible.
+" The ! means the package won't be loaded right away but when plugins are
+" loaded during initialization.
+if has('syntax') && has('eval')
+  packadd! matchit
+endif
