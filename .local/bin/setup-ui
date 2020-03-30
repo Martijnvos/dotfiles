@@ -1,7 +1,7 @@
-#!/bin/bash
+#!/bin/sh
 
-# Reload the Pywal configuration
-wal -R
+# Sets the background and configures Pywal
+setbg
 
 # Pull in the different configuration scripts
 ~/.config/polybar/launch &

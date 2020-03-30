@@ -1,6 +1,8 @@
-#!/usr/bin/env sh
-# Sets the background. If given an argument, will set the defuault background to the given one.
-[ ! -z "$1" ] && cp "$1" ~/.config/wallpaper.jpg && notify-send -i "$HOME/.config/wallpaper.jpg" "Wallpaper changed."
+#!/bin/sh
+
+# Sets the background. If given an argument, will set the default background to the given one.
+# wal -c deletes the cached colorscheme as replacing the wall doesn't bust the cache for some reason
+[ ! -z "$1" ] && cp "$1" ~/.config/wallpaper.jpg && notify-send -i "$HOME/.config/wallpaper.jpg" "Wallpaper changed." && wal -c
 
 # Configure Pywal so theme gets updated based on wallpaper
 # Use -n to prevent setting the wallpaper
