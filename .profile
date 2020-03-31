@@ -5,7 +5,7 @@
 
 export BROWSER="brave"
 export TERMINAL="urxvt-unicode"
-export EDITOR="nano"
+export EDITOR="vim"
 export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"
 
 # Home directory cleanup
