@@ -4,18 +4,6 @@ if v:progname =~? "evim"
   finish
 endif
 
-" Check if the vim-plug plugin manager is installed
-" If not, install and configure it
-if empty(glob('~/.config/vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.config/vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-
-" Uncomment this to add plugins using vim-plug
-"call plug#begin('~/.config/vim/plugged')
-"call plug#end()
-
 " Get the defaults that most users want.
 " This will set nocompabitle and enable filetype recognition & syntax highlighting 
 source $VIMRUNTIME/defaults.vim
@@ -26,6 +14,27 @@ set viminfo+=n~/.config/vim/viminfo
 set directory=~/.config/vim/swap//,.,~/tmp,/var/tmp,/tmp
 set backupdir=~/.config/vim/backup//,.,~/tmp,~/
 set undodir=~/.config/vim/undo//,.
+
+" Check if the vim-plug plugin manager is installed
+" If not, install and configure it
+if empty(glob('~/.config/vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.config/vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync
+endif
+
+" Add plugins using vim-plug
+call plug#begin('~/.config/vim/plugged')
+  Plug 'dylanaraps/wal.vim'
+  Plug 'itchyny/lightline.vim'
+call plug#end()
+
+" Configure lightline
+set laststatus=2
+set noshowmode
+let g:lightline = {
+      \ 'colorscheme': 'wal',
+      \ }
 
 " Splits open at the bottom and right, instead of top and left which is the
 " default
