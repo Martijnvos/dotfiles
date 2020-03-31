@@ -56,10 +56,8 @@ bindsym $mod+d exec dmenu_run -nb "$fg" -nf "$bg" -sb "$bg" -sf "$fg"
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
-# Take a screenshot
-bindsym Shift+Print exec "scrot '%Y-%m-%d_$wx$h.png' -ue 'mv $f ~/Screenshots/' && notify-send 'Scrot' 'Screenshot saved to ~/Screenshots/'"
-bindsym --release Control+Shift+Print exec "notify-send 'Scrot' 'Make a selection' && scrot '%Y-%m-%d_$wx$h.png' -se 'mv $f ~/Screenshots/' \
-  && notify-send 'Scrot' 'Screenshot saved to ~/Screenshots/'"
+# Take a screenshot using the script in .local/share
+bindsym Shift+Print exec "take-screenshot && notify-send 'Maim' 'Screenshot taken'"
 
 # change focus
 bindsym $mod+h focus left

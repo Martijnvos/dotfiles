@@ -1,0 +1,40 @@
+#!/bin/sh
+
+# This is bound to Shift+PrintScreen by default, requires maim. It lets you
+# choose the kind of screenshot to take, including copying the image or even
+# highlighting an area to copy. 
+
+current_monitor_dimens() {
+	local MONITORS=$(xrandr | grep -o '[0-9]*x[0-9]*[+-][0-9]*[+-][0-9]*')
+	# Get the location of the mouse
+	local XMOUSE=$(xdotool getmouselocation | awk -F "[: ]" '{print $2}')
+	local YMOUSE=$(xdotool getmouselocation | awk -F "[: ]" '{print $4}')
+
+	for mon in ${MONITORS}; do
+		# Parse the geometry of the monitor
+		local MONW=$(echo ${mon} | awk -F "[x+]" '{print $1}')
+		local MONH=$(echo ${mon} | awk -F "[x+]" '{print $2}')
+		local MONX=$(echo ${mon} | awk -F "[x+]" '{print $3}')
+		local MONY=$(echo ${mon} | awk -F "[x+]" '{print $4}')
+		# Use a simple collision check
+		if (( ${XMOUSE} >= ${MONX} )); then
+			if (( ${XMOUSE} <= ${MONX}+${MONW} )); then
+				if (( ${YMOUSE} >= ${MONY} )); then
+					if (( ${YMOUSE} <= ${MONY}+${MONH} )); then
+						# We have found our monitor!
+						echo "${MONW}x${MONH}+${MONX}+${MONY}"
+					fi
+				fi
+			fi
+		fi
+	done
+}
+
+case "$(printf "a selected area\\ncurrent window\\nfull screen\\na selected area (copy)\\ncurrent window (copy)\\nfull screen (copy)" | dmenu -l 6 -i -p "Screenshot which area?")" in
+	"a selected area") maim -s screenshot-selected-"$(date '+%y%m%d-%H%M-%S').png" ;;
+	"current window") maim -i "$(xdotool getactivewindow)" screenshot-window-"$(date '+%y%m%d-%H%M-%S').png" ;;
+	"full screen") maim -g $(current_monitor_dimens) screenshot-full-"$(date '+%y%m%d-%H%M-%S').png" ;;
+	"a selected area (copy)") maim -s | xclip -selection clipboard -t image/png ;;
+	"current window (copy)") maim -i "$(xdotool getactivewindow)" | xclip -selection clipboard -t image/png ;;
+	"full screen (copy)") maim -g $(current_monitor_dimens) | xclip -selection clipboard -t image/png ;;
+esac
