@@ -4,6 +4,8 @@
 # choose the kind of screenshot to take, including copying the image or even
 # highlighting an area to copy. 
 
+# Determines which display is below the mouse and fetches its dimensions
+# Iteration on https://gist.github.com/naelstrof/f9b74b5221cdc324c0911c89a47b8d97
 current_monitor_dimens() {
 	local MONITORS=$(xrandr | grep -o '[0-9]*x[0-9]*[+-][0-9]*[+-][0-9]*')
 	# Get the location of the mouse
@@ -30,6 +32,7 @@ current_monitor_dimens() {
 	done
 }
 
+# Iteration on https://github.com/LukeSmithxyz/voidrice/blob/master/.local/bin/maimpick
 case "$(printf "a selected area\\ncurrent window\\nfull screen\\na selected area (copy)\\ncurrent window (copy)\\nfull screen (copy)" | dmenu -l 6 -i -p "Screenshot which area?")" in
 	"a selected area") maim -s screenshot-selected-"$(date '+%y%m%d-%H%M-%S').png" ;;
 	"current window") maim -i "$(xdotool getactivewindow)" screenshot-window-"$(date '+%y%m%d-%H%M-%S').png" ;;
