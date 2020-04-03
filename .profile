@@ -4,7 +4,7 @@
 #
 
 export BROWSER="brave"
-export TERMINAL="urxvt-unicode"
+export TERMINAL="st"
 export EDITOR="vim"
 export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"
 
