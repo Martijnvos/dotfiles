@@ -28,6 +28,7 @@ call plug#begin('~/.config/vim/plugged')
   " Functional
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
+  Plug 'tpope/vim-surround'
 
   " Appearance
   Plug 'dylanaraps/wal.vim'
