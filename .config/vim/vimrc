@@ -25,6 +25,11 @@ endif
 
 " Add plugins using vim-plug
 call plug#begin('~/.config/vim/plugged')
+  " Functional
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'junegunn/fzf.vim'
+
+  " Appearance
   Plug 'dylanaraps/wal.vim'
   Plug 'itchyny/lightline.vim'
 call plug#end()
