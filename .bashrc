@@ -8,7 +8,7 @@
 [[ $- != *i* ]] && return
 
 alias ls='ls --color=auto'
-PS1='[\u@\h \W]\$ '
+PS1='\W \$ '
 
 ## Applies the pywal theme to new terminals
 # Import colorscheme from 'wal' asynchronously
