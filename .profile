@@ -14,6 +14,7 @@ export NPM_CONFIG_CACHE="$HOME/.cache/npm"
 export NPM_CONFIG_TMP="$XDG_RUNTIME_DIR/npm"
 
 export GNUPGHOME="$HOME/.local/share/gnupg"
+export PASSWORD_STORE_DIR="$HOME/.local/share/pass"
 export VIMINIT="source ~/.config/vim/vimrc"
 export HISTFILE="$HOME/.local/share/bash_history"
 export LESSHISTFILE="-"
