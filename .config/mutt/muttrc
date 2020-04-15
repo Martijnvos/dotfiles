@@ -14,6 +14,27 @@ set forward_format = "Fwd: %s"	# format of subject when forwarding
 set forward_quote		# include message in forwards
 set include			# include message in replies
 
+# Preventing IMAP connections from timing out
+set imap_keepalive = 240
+
+# General rebindings
+bind index G last-entry
+bind index gg first-entry
+bind pager j next-line
+bind pager k previous-line
+bind pager a view-attachments
+bind index D delete-message
+bind index U undelete-message
+bind index L limit
+bind index l display-message
+bind index <space> tag-entry
+bind index,pager,browser d half-down
+bind index,pager,browser u half-up
+bind index,pager S sync-mailbox
+bind index,pager R group-reply
+# Autocompletion of email addresses known to mutt
+bind editor <Tab> complete-query
+
 # Colors and aesthetic settings:
 mono bold bold
 mono underline underline
