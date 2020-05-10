@@ -10,6 +10,10 @@
 alias ls='ls --color=auto'
 PS1='\W \$ '
 
+# Turn off Software Flow control so Ctrl + S doesn't lock terminal
+# More info: https://unix.stackexchange.com/a/72092
+stty -ixon
+
 ## Applies the pywal theme to new terminals
 # Import colorscheme from 'wal' asynchronously
 # &   # Run the process in the background.
