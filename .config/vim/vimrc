@@ -57,6 +57,7 @@ set number relativenumber
 set tabstop=4
 " Sets tab key indentation level
 set softtabstop=4
+set expandtab
 
 if has("vms")
   set nobackup		" do not keep a backup file, use versions instead
