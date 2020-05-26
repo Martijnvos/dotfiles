@@ -23,8 +23,8 @@ client.background       $bg
 
 # i3-gaps settings
 for_window [class="^.*"] border pixel 2 
-gaps inner 15 
-gaps outer 15
+gaps inner 10 
+gaps outer 10
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
