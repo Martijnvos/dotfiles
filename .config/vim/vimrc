@@ -26,6 +26,7 @@ endif
 " Add plugins using vim-plug
 call plug#begin('~/.config/vim/plugged')
   " Functional
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
   Plug 'tpope/vim-surround'
