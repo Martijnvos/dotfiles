@@ -38,6 +38,9 @@ call plug#begin('~/.config/vim/plugged')
   Plug 'itchyny/lightline.vim'
 call plug#end()
 
+" General colorscheme
+colorscheme wal
+
 " Configure lightline
 set laststatus=2
 set noshowmode
