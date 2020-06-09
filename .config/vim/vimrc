@@ -105,9 +105,9 @@ set splitbelow splitright
 set number relativenumber
 
 " Sets visual tab representation
-" Note that shiftwidth (he number of spaces Vim uses when indenting, either
-" using autoindent stuff or the usual >>, << commands) gets value of tabstop if not defined
 set tabstop=4
+" Determine indentation level
+set shiftwidth=4
 " Sets tab key indentation level
 set softtabstop=4
 set expandtab
