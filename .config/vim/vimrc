@@ -71,6 +71,9 @@ set number relativenumber
 " re-using the same window in this way.
 set hidden
 
+" For clever completion with the :find command
+set path+=**
+
 " Show partial commands in the last line of the screen
 set showcmd
 
