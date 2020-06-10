@@ -44,18 +44,19 @@ call plug#begin('~/.config/vim/plugged')
   Plug 'editorconfig/editorconfig-vim'
 
   " Appearance
-  Plug 'dylanaraps/wal.vim'
   Plug 'itchyny/lightline.vim'
+  Plug 'morhetz/gruvbox'
 call plug#end()
 
 " General colorscheme
-colorscheme wal
+colorscheme gruvbox
+set background=dark
 
 " Configure lightline
 set laststatus=2
 set noshowmode
 let g:lightline = {
-      \ 'colorscheme': 'wal',
+      \ 'colorscheme': 'gruvbox',
       \ }
 
 " Splits open at the bottom and right, instead of top and left which is the
