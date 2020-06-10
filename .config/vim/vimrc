@@ -84,6 +84,9 @@ set cmdheight=2
 " Better command-line completion
 set wildmenu
 
+" Get results when you search
+set incsearch
+
 " Use case insensitive search, except when using capital letters
 set ignorecase smartcase
 
