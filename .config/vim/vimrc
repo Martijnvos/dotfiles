@@ -49,6 +49,7 @@ call plug#begin('~/.config/vim/plugged')
 call plug#end()
 
 " General colorscheme
+let gruvbox_contrast_dark='hard'
 colorscheme gruvbox
 set background=dark
 
