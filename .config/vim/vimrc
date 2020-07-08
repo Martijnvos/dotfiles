@@ -119,14 +119,6 @@ if &t_Co > 2 || has("gui_running")
   set hlsearch
 endif
 
-" Put these in an autocmd group, so that we can delete them easily.
-augroup vimrcEx
-  au!
-
-  " For all text files set 'textwidth' to 80 characters.
-  autocmd FileType text setlocal textwidth=80
-augroup END
-
 augroup vimStartup
 	au!
 
