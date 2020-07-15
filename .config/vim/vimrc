@@ -52,6 +52,7 @@ call plug#end()
 let gruvbox_contrast_dark='hard'
 colorscheme gruvbox
 set background=dark
+highlight Normal ctermbg=0
 
 " Configure lightline
 set laststatus=2
