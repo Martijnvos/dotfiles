@@ -3,7 +3,7 @@
 # ~/.profile
 #
 
-export BROWSER="brave"
+export BROWSER="firefox"
 export TERMINAL="st"
 export EDITOR="vim"
 export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"
