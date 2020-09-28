@@ -6,6 +6,9 @@ xinput --set-prop "SYNA8005:00 06CB:CD8C Touchpad" "libinput Natural Scrolling E
 # Configure xrdb to look in XDG directory for Xresources
 xrdb -merge ~/.config/x11/Xresources
 
+# Turn off bell sound
+xset -b
+
 # Set the Windows key to be my compose key for things like ë
 setxkbmap -option compose:lwin
 
