@@ -20,14 +20,7 @@ background = ${colors.background}
 foreground = ${colors.foreground}
 
 line-size = 3
-line-color = #f00
-
-border-size = 0
-border-color = #00000000
-
-padding-left = 0
 padding-right = 2
-
 module-margin-left = 2
 module-margin-right = 2
 
@@ -36,34 +29,17 @@ font-1 = "Font Awesome 5 Free:style=Regular:pixelsize=10;1"
 font-2 = "Font Awesome 5 Free:style=Solid:pixelsize=10;1"
 font-3 = "Font Awesome 5 Brands:pixelsize=10;1"
 
-modules-left = i3 xwindow
+modules-left = bspwm xwindow
 modules-center = date
 modules-right = pulseaudio ethernet wireless storage memory cpu temperature battery
 
-[module/i3]
-type = internal/i3
+[module/bspwm]
+type = internal/bspwm
 format = <label-state> <label-mode>
-index-sort = true
-wrapping-scroll = true
-strip-wsnumbers = true
-
-label-mode = %mode%
-label-mode-padding = 2
-label-mode-foreground = ${colors.foreground}
-label-mode-background = ${colors.primary}
 
 label-focused = %name%
-label-focused-background = ${colors.background-alt}
 label-focused-underline = ${colors.primary}
 label-focused-padding = 2
-
-label-unfocused = %name%
-label-unfocused-padding = 2
-
-label-visible = V %index%
-label-visible-background = ${self.label-focused-background}
-label-visible-underline = ${self.label-focused-background}
-label-visible-padding = ${self.label-focused-padding}
 
 label-urgent = 
 label-urgent-background = ${colors.alert}
@@ -79,10 +55,7 @@ interval = 1.0
 
 date = %d-%m%
 time = " %H:%M:%S"
-
 format-prefix = 
-format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #00000000
 
 label = %time% / %date%
 
@@ -91,24 +64,7 @@ type = internal/pulseaudio
 
 format-volume = <label-volume>
 label-volume = " %percentage%%"
-label-volume-foreground = ${colors.foreground}
-
-format-muted-foreground = ${colors.foreground-alt}
 label-muted = " "
-
-; Visual representation of the volume amount
-;bar-volume-width = 16
-;bar-volume-foreground-0 = #55aa55
-;bar-volume-foreground-1 = #55aa55
-;bar-volume-foreground-2 = #55aa55
-;bar-volume-foreground-3 = #55aa55
-;bar-volume-foreground-4 = #55aa55
-;bar-volume-foreground-5 = #f5a70a
-;bar-volume-foreground-6 = #ff5555
-;bar-volume-gradient = true
-;bar-volume-indicator = |
-;bar-volume-fill = –
-;bar-volume-empty = –
 
 [module/ethernet]
 type = internal/network
@@ -126,25 +82,23 @@ interface = wlp0s20f3
 interval = 3.0
 
 format-connected = <ramp-signal> <label-connected>
-format-connected-underline = #00000000
 label-connected = " %essid%"
 
 format-disconnected = <label-disconnected>
 format-disconnected-underline = ${colors.alert}
 label-disconnected = xx.xx.xx.xx
-label-disconnected-foreground = ${colors.foreground-alt}
 
 ramp-signal-0 = 
 ramp-signal-1 = 
 ramp-signal-2 = 
 ramp-signal-3 = 
 ramp-signal-4 = 
-ramp-signal-foreground = ${colors.foreground-alt}
 
 [module/storage]
 type = internal/fs
 
 mount-0 = /
+interval = 10
 
 format-mounted = <label-mounted>
 label-mounted = " %free%"
@@ -153,22 +107,19 @@ label-mounted = " %free%"
 type = internal/memory
 interval = 2
 format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #00000000
 label = %percentage_used%%
 
 [module/cpu]
 type = internal/cpu
 interval = 2
 format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #00000000
 label = %percentage%%
 
 [module/temperature]
 type = internal/temperature
 thermal-zone = 0
 warn-temperature = 80
+base-temperature = 30
 
 format = <ramp> <label>
 format-underline = #00000000
@@ -177,14 +128,12 @@ format-warn-underline = ${self.format-underline}
 
 label = %temperature-c%
 label-warn = %temperature-c%
-label-warn-foreground = ${colors.foreground}
 label-warn-background = ${colors.alert}
 label-warn-padding = 2
 
 ramp-0 = 
 ramp-1 = 
 ramp-2 = 
-ramp-foreground = ${colors.foreground-alt}
 
 [module/battery]
 type = internal/battery
