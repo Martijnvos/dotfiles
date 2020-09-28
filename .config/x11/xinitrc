@@ -9,10 +9,16 @@ xrdb -merge ~/.config/x11/Xresources
 # Set the Windows key to be my compose key for things like ë
 setxkbmap -option compose:lwin
 
+# Setup sxhkd (simple x hotkey daemon)
+pgrep -x sxhkd > /dev/null || sxhkd &
+
+# Change default cursor to arrow shape
+xsetroot -cursor_name left_ptr
+
 # Notify autorandr of screen change because of startup
 autorandr --change
 
 # Setup default UI elements like Pywal, polybar and dunst
 setup-ui
 
-exec i3
+exec bspwm
