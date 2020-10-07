@@ -1,7 +1,13 @@
 #! /bin/sh
+intern=eDP1
+extern=HDMI1
 
-bspc monitor eDP1 -d I II III IV V 
-bspc monitor HDMI1 -d VI VII VIII IX X
+if xrandr | grep "$extern disconnected"; then
+	bspc monitor $intern -d I II III IV V VI VII VIII IX X
+else
+	bspc monitor $extern -d I II III IV V 
+	bspc monitor $intern -d VI VII VIII IX X
+fi
 
 bspc config border_width         2
 bspc config window_gap          12
