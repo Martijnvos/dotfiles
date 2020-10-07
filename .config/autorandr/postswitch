@@ -1,0 +1,7 @@
+#! /bin/sh
+
+# Reload bspwm for workspace setup based on connected monitors
+bspc wm -r
+
+# Update polybar
+~/.config/polybar/launch &
