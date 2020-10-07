@@ -3,5 +3,5 @@
 # Reload bspwm for workspace setup based on connected monitors
 bspc wm -r
 
-# Update polybar
-~/.config/polybar/launch &
+# Update UI elements like polybar and background
+setup-ui
