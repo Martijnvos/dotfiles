@@ -14,6 +14,10 @@ alt + Return
 alt + d
 	dmenu_run
 
+# Use MOZ_X11_EGL for VAAPI support
+alt + f
+	MOZ_X11_EGL=1 firefox
+
 # Take screenshot using the script in ~/.local/share
 shift + Print
 	take-screenshot && notify-send 'Maim' 'Screenshot taken'	
