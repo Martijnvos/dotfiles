@@ -45,6 +45,9 @@ label-urgent = 
 label-urgent-background = ${colors.alert}
 label-urgent-padding = 2
 
+; Don't show empty workspaces
+label-empty =
+
 [module/xwindow]
 type = internal/xwindow
 label = %title:0:64:...%
