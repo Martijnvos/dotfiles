@@ -3,7 +3,7 @@
 # ~/.profile
 #
 
-export BROWSER="firefox"
+export BROWSER="MOZ_X11_EGL=1 firefox"
 export TERMINAL="st"
 export EDITOR="vim"
 export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"

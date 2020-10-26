@@ -16,7 +16,7 @@ alt + d
 
 # Use MOZ_X11_EGL for VAAPI support
 alt + b
-	MOZ_X11_EGL=1 firefox
+	$BROWSER
 
 # Take screenshot using the script in ~/.local/share
 shift + Print
