@@ -14,7 +14,7 @@ alt + Return
 alt + d
 	dmenu_run
 
-# Use MOZ_X11_EGL for VAAPI support
+# Browser
 alt + b
 	$BROWSER
 

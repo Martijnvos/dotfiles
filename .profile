@@ -3,6 +3,7 @@
 # ~/.profile
 #
 
+# Use MOZ_X11_EGL for VAAPI support
 export BROWSER="MOZ_X11_EGL=1 firefox"
 export TERMINAL="st"
 export EDITOR="vim"
