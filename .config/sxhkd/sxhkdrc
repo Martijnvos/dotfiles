@@ -15,7 +15,7 @@ alt + d
 	dmenu_run
 
 # browser
-alt + b
+alt + f
 	$BROWSER
 
 # take screenshot using the script in ~/.local/share
@@ -60,7 +60,7 @@ alt + shift + q
 #
 
 # set the window state
-alt + {t,f}
+alt + shift + {t,f}
 	bspc node -t {tiled,fullscreen}
 
 #
