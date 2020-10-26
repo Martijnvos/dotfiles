@@ -3,8 +3,7 @@
 # ~/.profile
 #
 
-# Use MOZ_X11_EGL for VAAPI support
-export BROWSER="MOZ_X11_EGL=1 firefox"
+export BROWSER="firefox"
 export TERMINAL="st"
 export EDITOR="vim"
 export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"
@@ -21,6 +20,9 @@ export HISTFILE="$HOME/.local/share/bash_history"
 export LESSHISTFILE="-"
 export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority" # Might break some DMs
 export XINITRC="$HOME/.config/x11/xinitrc"
+
+# Firefox x11 VA-API support
+export MOZ_X11_EGL=1
 
 # Android / react-native variables
 export ANDROID_HOME=$HOME/Android
