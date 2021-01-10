@@ -3,7 +3,7 @@
 # ~/.profile
 #
 
-export BROWSER="firefox"
+export BROWSER="brave"
 export TERMINAL="st"
 export EDITOR="vim"
 export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"
@@ -21,8 +21,9 @@ export LESSHISTFILE="-"
 export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority" # Might break some DMs
 export XINITRC="$HOME/.config/x11/xinitrc"
 
-# Firefox x11 VA-API support
-export MOZ_X11_EGL=1
+# Deno
+export DENO_INSTALL="/home/martijn/.local/bin/deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
 
 # Adds the user scripts to PATH recursively
 export PATH="$PATH:$(du $HOME/.local/bin/ | cut -f2 | tr '\n' ':' | sed 's/:*$//')"
