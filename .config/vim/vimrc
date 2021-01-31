@@ -19,7 +19,7 @@ filetype indent plugin on
 syntax on
 
 " Configure XDG locations
-set runtimepath+=~/.config/vim,~/.config/vim/after
+set runtimepath=~/.config/vim,~/.config/vim/after,$VIM,$VIMRUNTIME
 set viminfo+=n~/.config/vim/viminfo
 set directory=~/.config/vim/swap//,.,~/tmp,/var/tmp,/tmp
 set backupdir=~/.config/vim/backup//,.,~/tmp,~/
