@@ -8,6 +8,9 @@ export TERMINAL="alacritty"
 export EDITOR="vim"
 export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"
 
+# Alacritty font scaling
+export WINIT_X11_SCALE_FACTOR=1
+
 # Home directory cleanup
 export NPM_CONFIG_USERCONFIG="$HOME/.config/npm/npmrc"
 export NPM_CONFIG_CACHE="$HOME/.cache/npm"
