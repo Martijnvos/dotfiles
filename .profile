@@ -4,7 +4,7 @@
 #
 
 export BROWSER="brave"
-export TERMINAL="st"
+export TERMINAL="alacritty"
 export EDITOR="vim"
 export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"
 
