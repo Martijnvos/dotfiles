@@ -103,15 +103,17 @@ set autoindent
 set tabstop=4
 " Determine indentation per level
 set shiftwidth=4
+" Expand tab to spaces
+set expandtab
 
 
 " Miscellaneous non-plugin settings
 if has("vms")
-  set nobackup		" do not keep a backup file, use versions instead
+  set nobackup      " do not keep a backup file, use versions instead
 else
-  set backup		" keep a backup file (restore to previous version)
+  set backup        " keep a backup file (restore to previous version)
   if has('persistent_undo')
-    set undofile	" keep an undo file (undo changes after closing)
+    set undofile    " keep an undo file (undo changes after closing)
   endif
 endif
 
@@ -121,16 +123,16 @@ if &t_Co > 2 || has("gui_running")
 endif
 
 augroup vimStartup
-	au!
+    au!
 
-	" When editing a file, always jump to the last known cursor
-	" position. Don't do it when the position is invalid, when inside an
-	" event handler (happens when dropping a file on gvim) and for a
-	" commit message (it's likely a different one than last time).
-	autocmd BufReadPost *
-		\ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
-		\ |   exe "normal! g`\""
-		\ | endif
+    " When editing a file, always jump to the last known cursor
+    " position. Don't do it when the position is invalid, when inside an
+    " event handler (happens when dropping a file on gvim) and for a
+    " commit message (it's likely a different one than last time).
+    autocmd BufReadPost *
+        \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+        \ |   exe "normal! g`\""
+        \ | endif
 
 augroup END
 

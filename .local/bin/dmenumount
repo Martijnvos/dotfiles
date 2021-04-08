@@ -9,73 +9,73 @@
 # BE AWARE: this script expects notify-send (with a notification implemenation like dunst) and simple-mtpfs to be installed
 
 getmount() { \
-	[ -z "$chosen" ] && exit 1
-	
-	# Use dmenu to query for the mount point.
-	# 2>/dev/null filters errors
-	mp="$(find $1 2>/dev/null | dmenu -i -p "Type in mount point.")"
-	
-	# Exit with error if no mount point is found
-	[ "$mp" = "" ] && exit 1
-	
-	# Check if the directory already exists
-	# if not, ask the user for permission to create it
-	if [ ! -d "$mp" ]; then
-		mkdiryn=$(printf "No\\nYes" | dmenu -i -p "$mp does not exist. Create it?")
-		[ "$mkdiryn" = "Yes" ] && (mkdir -p "$mp" || sudo -A mkdir -p "$mp")
-	fi
-	}
+    [ -z "$chosen" ] && exit 1
+
+    # Use dmenu to query for the mount point.
+    # 2>/dev/null filters errors
+    mp="$(find $1 2>/dev/null | dmenu -i -p "Type in mount point.")"
+
+    # Exit with error if no mount point is found
+    [ "$mp" = "" ] && exit 1
+
+    # Check if the directory already exists
+    # if not, ask the user for permission to create it
+    if [ ! -d "$mp" ]; then
+        mkdiryn=$(printf "No\\nYes" | dmenu -i -p "$mp does not exist. Create it?")
+        [ "$mkdiryn" = "Yes" ] && (mkdir -p "$mp" || sudo -A mkdir -p "$mp")
+    fi
+    }
 
 mountusb() { \
-	# Use dmenu to query the drive to mount
-	chosen="$(echo "$usbdrives" | dmenu -i -p "Mount which drive?" | awk '{print $1}')"
-	
-	# Use the 'ask for password (A)' flag
-	# and display a notification with notify-send that the selected USB is mounted
-	sudo -A mount "$chosen" 2>/dev/null && notify-send "💻 USB mounting" "$chosen mounted." && exit 0
-	
-	# -nrpo cleans up the output of lsblk after which the already mounted items are queried
-	alreadymounted=$(lsblk -nrpo "name,type,mountpoint" | awk '$2=="part"&&$3!~/\/boot|\/home$|SWAP/&&length($3)>1{printf "-not \\( -path *%s -prune \\) \\ \n",$3}')
-	
-	# Use the 'getmount' function defined before
-	# This shows sensible default locations without recursing too deep
-	# Using '-type d' only directories are returned
-	getmount "/mnt /media /mount -maxdepth 5 -type d $alreadymounted"
-	
-	# Get the filetype of the chosen directory
-	partitiontype="$(lsblk -no "fstype" "$chosen")"
-	# Do some magic in the case of a vfat partition type
-	# This shouldn't happen on new machines as it's quite old
-	# Introduced with Windows 95
-	case "$partitiontype" in "vfat") 
-		sudo -A mount -t vfat "$chosen" "$mp" -o rw,umask=0000;;
-		*) sudo -A mount "$chosen" "$mp"; user="$(whoami)"; ug="$(groups | awk '{print $1}')"; sudo -A chown "$user":"$ug" "$mp";;
-	esac
+    # Use dmenu to query the drive to mount
+    chosen="$(echo "$usbdrives" | dmenu -i -p "Mount which drive?" | awk '{print $1}')"
 
-	# Notify the user
-	notify-send "💻 USB mounting" "$chosen mounted to $mp."
+    # Use the 'ask for password (A)' flag
+    # and display a notification with notify-send that the selected USB is mounted
+    sudo -A mount "$chosen" 2>/dev/null && notify-send "💻 USB mounting" "$chosen mounted." && exit 0
+
+    # -nrpo cleans up the output of lsblk after which the already mounted items are queried
+    alreadymounted=$(lsblk -nrpo "name,type,mountpoint" | awk '$2=="part"&&$3!~/\/boot|\/home$|SWAP/&&length($3)>1{printf "-not \\( -path *%s -prune \\) \\ \n",$3}')
+
+    # Use the 'getmount' function defined before
+    # This shows sensible default locations without recursing too deep
+    # Using '-type d' only directories are returned
+    getmount "/mnt /media /mount -maxdepth 5 -type d $alreadymounted"
+
+    # Get the filetype of the chosen directory
+    partitiontype="$(lsblk -no "fstype" "$chosen")"
+    # Do some magic in the case of a vfat partition type
+    # This shouldn't happen on new machines as it's quite old
+    # Introduced with Windows 95
+    case "$partitiontype" in "vfat") 
+        sudo -A mount -t vfat "$chosen" "$mp" -o rw,umask=0000;;
+        *) sudo -A mount "$chosen" "$mp"; user="$(whoami)"; ug="$(groups | awk '{print $1}')"; sudo -A chown "$user":"$ug" "$mp";;
+    esac
+
+    # Notify the user
+    notify-send "💻 USB mounting" "$chosen mounted to $mp."
 }
 
 mountandroid() { \
-	# Choose Android device from MTP list found by simple-mtpfs
-	chosen=$(echo "$anddrives" | dmenu -i -p "Which Android device?" | cut -d : -f 1)
-	
-	# Get the mount point (it's created if non-existent)
-	getmount "/mnt /media /mount -maxdepth 5 -type d"
-	
-	# Use simple-mtpfs to mount the device at the specified mount point
-	sudo -A simple-mtpfs --device "$chosen" "$mp"
+    # Choose Android device from MTP list found by simple-mtpfs
+    chosen=$(echo "$anddrives" | dmenu -i -p "Which Android device?" | cut -d : -f 1)
+ 
+    # Get the mount point (it's created if non-existent)
+    getmount "/mnt /media /mount -maxdepth 5 -type d"
 
-	# Notify the user
-	notify-send "🤖 Android mounted" "Android device mounted to $mp."
+    # Use simple-mtpfs to mount the device at the specified mount point
+    sudo -A simple-mtpfs --device "$chosen" "$mp"
+
+    # Notify the user
+    notify-send "🤖 Android mounted" "Android device mounted to $mp."
 }
 
 # If both types are recognised, ask which one to mount
 asktype() { \
-	case $(printf "USB\\nAndroid" | dmenu -i -p "Mount a USB drive or Android device?") in
-		USB) mountusb ;;
-		Android) mountandroid ;;
-	esac
+    case $(printf "USB\\nAndroid" | dmenu -i -p "Mount a USB drive or Android device?") in
+        USB) mountusb ;;
+        Android) mountandroid ;;
+    esac
 }
 
 # Use simple-mtpfs to check which Android MTP connections are established
@@ -85,15 +85,15 @@ usbdrives="$(lsblk -rpo "name,type,size,mountpoint" | awk '$2=="part"&&$4==""{pr
 
 # Delegate to the corresponding method
 if [ -z "$usbdrives" ]; then
-	[ -z "$anddrives" ] && echo "No USB drive or Android device detected" && exit
-	echo "Android device(s) detected."
-	mountandroid
+    [ -z "$anddrives" ] && echo "No USB drive or Android device detected" && exit
+    echo "Android device(s) detected."
+    mountandroid
 else
-	if [ -z "$anddrives" ]; then
-		echo "USB drive(s) detected."
-	       	mountusb
-	else
-		echo "Mountable USB drive(s) and Android device(s) detected."
-		asktype
-	fi
+    if [ -z "$anddrives" ]; then
+        echo "USB drive(s) detected."
+            mountusb
+    else
+        echo "Mountable USB drive(s) and Android device(s) detected."
+        asktype
+    fi
 fi
