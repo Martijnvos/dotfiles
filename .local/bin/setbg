@@ -4,6 +4,8 @@
 # wal -c deletes the cached colorscheme as replacing the wall doesn't bust the cache for some reason
 [ ! -z "$1" ] && cp "$1" ~/.config/wallpaper.jpg && notify-send -i "$HOME/.config/wallpaper.jpg" "Wallpaper changed." && wal -c
 
+# Remove cached colorschemes
+wal -c
 # Configure Pywal so theme gets updated based on wallpaper
 # Use -n to prevent setting the wallpaper
 wal -i ~/.config/wallpaper.jpg -n
