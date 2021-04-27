@@ -12,3 +12,6 @@ wal -i ~/.config/wallpaper.jpg -n
 
 # Set the background manually to prevent .fehbg from being created
 feh --no-fehbg --bg-scale ~/.config/wallpaper.jpg
+
+# Set lockscreen background
+betterlockscreen -u ~/.config/wallpaper.jpg -b
