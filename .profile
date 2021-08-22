@@ -25,7 +25,7 @@ export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority" # Might break some DMs
 export XINITRC="$HOME/.config/x11/xinitrc"
 
 # Deno
-export DENO_INSTALL="/home/martijn/.local/bin/deno"
+export DENO_INSTALL="$HOME/.local/bin/deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
 
 # Adds the user scripts to PATH recursively
