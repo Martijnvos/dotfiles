@@ -1,17 +1,20 @@
 #!/bin/sh
 
-# Sets the background. If given an argument, will set the default background to the given one.
-# wal -c deletes the cached colorscheme as replacing the wall doesn't bust the cache for some reason
-[ ! -z "$1" ] && cp "$1" ~/.config/wallpaper.jpg && notify-send -i "$HOME/.config/wallpaper.jpg" "Wallpaper changed." && wal -c
+# Sets the background. If given an argument, will set the default background to the given one and update the lockcsreen.
+# wal -c deletes the cached colorscheme as replacing the wall doesn't bust the cache for some reason.
+if [[ ! -z "$1" ]]
+then
+    cp "$1" ~/.config/wallpaper.jpg &&
+    notify-send -i "$HOME/.config/wallpaper.jpg" "Wallpaper changed." &&
+    wal -c &&
+    betterlockscreen -u ~/.config/wallpaper.jpg --blur
+else
+    # Remove cached colorschemes
+    wal -c
+    # Configure Pywal so theme gets updated based on wallpaper
+    # Use -n to prevent setting the wallpaper
+    wal -i ~/.config/wallpaper.jpg -n
 
-# Remove cached colorschemes
-wal -c
-# Configure Pywal so theme gets updated based on wallpaper
-# Use -n to prevent setting the wallpaper
-wal -i ~/.config/wallpaper.jpg -n
-
-# Set the background manually to prevent .fehbg from being created
-feh --no-fehbg --bg-scale ~/.config/wallpaper.jpg
-
-# Set lockscreen background
-betterlockscreen -u ~/.config/wallpaper.jpg -b
+    # Set the background manually to prevent .fehbg from being created
+    feh --no-fehbg --bg-scale ~/.config/wallpaper.jpg
+fi
