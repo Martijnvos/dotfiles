@@ -92,3 +92,7 @@ inoremap , ,<c-g>u
 inoremap . .<c-g>u
 inoremap ! !<c-g>u
 inoremap ? ?<c-g>u
+
+" Repeat renaming with .
+nnoremap cn *``cgn
+nnoremap cN *``cgN
