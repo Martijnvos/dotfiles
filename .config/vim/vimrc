@@ -77,3 +77,18 @@ endif
 " The ! means the package won't be loaded right away but when plugins are
 " loaded during initialization.
 packadd! matchit
+
+" Remaps
+" Yank until last non-blank character of line
+nnoremap Y yg_
+
+" Center on search and line joining
+nnoremap n nzzzv
+nnoremap N Nzzzv
+nnoremap J mzJ`z
+
+" Undo with breakpoints
+inoremap , ,<c-g>u
+inoremap . .<c-g>u
+inoremap ! !<c-g>u
+inoremap ? ?<c-g>u
