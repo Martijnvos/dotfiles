@@ -96,3 +96,18 @@ inoremap ? ?<c-g>u
 " Repeat renaming with .
 nnoremap cn *``cgn
 nnoremap cN *``cgN
+
+" Autocommands
+augroup vimStartup
+    " Remove all autocommands for the current group
+    au!
+
+    " Jump to the last known cursor position.
+    " Don't when the position is invalid, when inside an event handler and for a
+    " commit message (it's likely a different one than last time).
+    autocmd BufReadPost *
+    \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+    \ |   exe "normal! g`\""
+    \ | endif
+
+augroup END
