@@ -7,8 +7,11 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+# Aliases
 alias ls='ls --color=auto'
-PS1='\W \$ '
+alias irssi='irssi --home ~/.config/irssi'
+
+PS1='\W \$ ' # Shell prompt format
 
 # Turn off Software Flow control so Ctrl + S doesn't lock terminal
 # More info: https://unix.stackexchange.com/a/72092
