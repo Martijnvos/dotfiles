@@ -47,11 +47,11 @@ let g:lightline = {
       \ 'colorscheme': 'gruvbox',
       \ }
 
-set splitbelow splitright " Splits open at the bottom and right, instead of top and left 
+set splitbelow splitright " Splits open at the bottom and right, instead of top and left
 set number relativenumber " Show relative line numbering
 
-" Re-use the same window and switch from an unsaved buffer without saving it 
-" first. Also allows you to keep an undo history for multiple files when 
+" Re-use the same window and switch from an unsaved buffer without saving it
+" first. Also allows you to keep an undo history for multiple files when
 " re-using the same window in this way.
 set hidden
 
@@ -98,6 +98,14 @@ nnoremap cn *``cgn
 nnoremap cN *``cgN
 
 " Autocommands
+fun! TrimTrailingWhitespace()
+    if !&binary && &filetype != 'diff'
+        let l:save = winsaveview()
+        keeppatterns %s/\s\+$//e
+        call winrestview(l:save)
+    endif
+endfun
+
 augroup vimStartup
     " Remove all autocommands for the current group
     au!
@@ -110,4 +118,9 @@ augroup vimStartup
     \ |   exe "normal! g`\""
     \ | endif
 
+augroup END
+
+augroup convenience
+    au!
+    autocmd BufWritePre * :call TrimTrailingWhitespace()
 augroup END
