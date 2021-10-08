@@ -106,7 +106,7 @@ fun! TrimTrailingWhitespace()
     endif
 endfun
 
-augroup vimStartup
+augroup vimrc
     " Remove all autocommands for the current group
     au!
 
@@ -118,9 +118,5 @@ augroup vimStartup
     \ |   exe "normal! g`\""
     \ | endif
 
-augroup END
-
-augroup convenience
-    au!
     autocmd BufWritePre * :call TrimTrailingWhitespace()
 augroup END
