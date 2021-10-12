@@ -10,9 +10,9 @@ syntax on " Enable syntax highlighting
 " Configure XDG locations
 set runtimepath=~/.config/vim,~/.config/vim/after,$VIM,$VIMRUNTIME
 set viminfo+=n~/.config/vim/viminfo
-set directory=~/.config/vim/swap//,.,~/tmp,/var/tmp,/tmp
-set backupdir=~/.config/vim/backup//,.,~/tmp,~/
-set undodir=~/.config/vim/undo//,.
+set directory=~/.config/vim/swap//,/var/tmp,/tmp
+set backupdir=~/.config/vim/backup//,/var/tmp,/tmp
+set undodir=~/.config/vim/undo//,/var/tmp,/tmp
 
 " Check if the vim-plug plugin manager is installed
 " If not, install and configure it
