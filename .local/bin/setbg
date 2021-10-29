@@ -16,5 +16,5 @@ else
     wal -i ~/.config/wallpaper.jpg -n
 
     # Set the background manually to prevent .fehbg from being created
-    feh --no-fehbg --bg-scale ~/.config/wallpaper.jpg
+    feh --no-fehbg --bg-fill ~/.config/wallpaper.jpg
 fi
