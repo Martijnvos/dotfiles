@@ -25,9 +25,9 @@ module-margin-left = 2
 module-margin-right = 2
 
 font-0 = "Hack:pixelsize=10:antialias=true;1"
-font-1 = "Font Awesome 5 Free:style=Regular:pixelsize=10;1"
-font-2 = "Font Awesome 5 Free:style=Solid:pixelsize=10;1"
-font-3 = "Font Awesome 5 Brands:pixelsize=10;1"
+font-1 = "Font Awesome 6 Free:style=Regular:pixelsize=10;1"
+font-2 = "Font Awesome 6 Free:style=Solid:pixelsize=10;1"
+font-3 = "Font Awesome 6 Brands:pixelsize=10;1"
 
 modules-left = bspwm xwindow
 modules-center = date
@@ -77,7 +77,7 @@ format-connected = <label-connected>
 label-connected = 
 
 ; Don't show an icon when ethernet is disconnected
-format-disconnected = 
+format-disconnected =
 
 [module/wireless]
 type = internal/network
