@@ -74,10 +74,15 @@ endif
 " loaded during initialization.
 packadd! matchit
 
-" Use space as a leader key to make it possible to do extra key combinations
+" Leader key config
+" Use space as a leader key to make extra key combinations possible
 let mapleader = " "
 
-" Remaps
+" Opens a new tab with the current buffer's path
+" Super useful when editing files in the same directory
+map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
+
+" Remaining remaps
 " Yank until last non-blank character of line
 nnoremap Y yg_
 
@@ -101,10 +106,6 @@ map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
-
-" Opens a new tab with the current buffer's path
-" Super useful when editing files in the same directory
-map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
 
 " Functions
 fun! TrimTrailingWhitespace()
