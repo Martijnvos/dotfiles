@@ -30,7 +30,6 @@ call plug#begin('~/.config/vim/plugged')
   Plug 'editorconfig/editorconfig-vim'
 
   " Appearance
-  Plug 'itchyny/lightline.vim'
   Plug 'morhetz/gruvbox'
 call plug#end()
 
@@ -40,12 +39,9 @@ colorscheme gruvbox
 set background=dark
 highlight Normal ctermbg=0
 
-" Configure lightline
-set laststatus=2
-set noshowmode
-let g:lightline = {
-      \ 'colorscheme': 'gruvbox',
-      \ }
+set laststatus=2 " Always show status line
+" Format status line
+set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
 
 set splitbelow splitright " Splits open at the bottom and right, instead of top and left
 set number relativenumber " Show relative line numbering
@@ -78,6 +74,9 @@ endif
 " loaded during initialization.
 packadd! matchit
 
+" Use space as a leader key to make it possible to do extra key combinations
+let mapleader = " "
+
 " Remaps
 " Yank until last non-blank character of line
 nnoremap Y yg_
@@ -97,7 +96,17 @@ inoremap ? ?<c-g>u
 nnoremap cn *``cgn
 nnoremap cN *``cgN
 
-" Autocommands
+" Prevent w from being necessary when moving between windows
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+
+" Opens a new tab with the current buffer's path
+" Super useful when editing files in the same directory
+map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
+
+" Functions
 fun! TrimTrailingWhitespace()
     if !&binary && &filetype != 'diff'
         let l:save = winsaveview()
@@ -106,6 +115,14 @@ fun! TrimTrailingWhitespace()
     endif
 endfun
 
+fun! HasPaste()
+    if &paste
+        return 'PASTE MODE  '
+    endif
+    return ''
+endfunction
+
+" Autocommands
 augroup vimrc
     " Remove all autocommands for the current group
     au!
