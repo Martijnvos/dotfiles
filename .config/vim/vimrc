@@ -69,11 +69,6 @@ if has('persistent_undo')
     set undofile    " keep an undo file (undo changes after closing)
 endif
 
-" Makes the % command work better (nocompatible required)
-" The ! means the package won't be loaded right away but when plugins are
-" loaded during initialization.
-packadd! matchit
-
 " Leader key config
 " Use space as a leader key to make extra key combinations possible
 let mapleader = " "
