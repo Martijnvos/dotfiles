@@ -10,6 +10,7 @@
 # Aliases
 alias ls='ls --color=auto'
 alias irssi='irssi --home ~/.config/irssi'
+alias {v,vi,vim}='nvim'
 
 PS1='\W \$ ' # Shell prompt format
 

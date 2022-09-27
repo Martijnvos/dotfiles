@@ -5,7 +5,7 @@
 
 export BROWSER="brave"
 export TERMINAL="alacritty"
-export EDITOR="vim"
+export EDITOR="nvim"
 export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"
 
 # Alacritty font scaling
@@ -18,7 +18,7 @@ export NPM_CONFIG_TMP="$XDG_RUNTIME_DIR/npm"
 
 export GNUPGHOME="$HOME/.local/share/gnupg"
 export PASSWORD_STORE_DIR="$HOME/.local/share/pass"
-export VIMINIT="source ~/.config/vim/vimrc"
+export VIMINIT="source ~/.config/nvim/init.vim"
 export HISTFILE="$HOME/.local/share/bash_history"
 export LESSHISTFILE="-"
 export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority" # Might break some DMs
