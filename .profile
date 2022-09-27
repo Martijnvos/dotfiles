@@ -28,6 +28,10 @@ export XINITRC="$HOME/.config/x11/xinitrc"
 export DENO_INSTALL="$HOME/.local/bin/deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
 
+# .NET
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
+export PATH=$PATH:~/.dotnet/tools
+
 # Adds the user scripts to PATH recursively
 export PATH="$PATH:$(du $HOME/.local/bin/ | cut -f2 | tr '\n' ':' | sed 's/:*$//')"
 
