@@ -51,7 +51,6 @@ set tabstop=4 " Tab size
 set shiftwidth=4 " Determine indentation per level
 set expandtab " Expand tab to spaces
 
-set backup " keep a backup file (restore to previous version)
 if has('persistent_undo')
     set undofile    " keep an undo file (undo changes after closing)
 endif
