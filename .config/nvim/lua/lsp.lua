@@ -1,5 +1,13 @@
+-- Add additional capabilities supported by nvim-cmp
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+
+if package.loaded['cmp_nvim_lsp'] then
+    capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+end
+
 -- C#
 require'lspconfig'.csharp_ls.setup{
+    capabilities = capabilities,
     on_attach = function()
         -- Actions
         vim.keymap.set("n", "gd", vim.lsp.buf.definition, {buffer=0})
