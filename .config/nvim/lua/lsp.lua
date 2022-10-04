@@ -12,22 +12,27 @@ vim.keymap.set("n", "<leader>dll", vim.diagnostic.setloclist, {buffer=0})
 
 vim.keymap.set("n", "<leader>dl", vim.diagnostic.open_float)
 
+-- General on_attach
+local on_attach = function(client,bufnr)
+    local bufopts = {buffer=bufnr}
+
+    -- Actions
+    vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
+    vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
+    vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
+    vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
+
+    -- Dialogs
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
+    vim.keymap.set("n", "<c-s>", vim.lsp.buf.signature_help, bufopts)
+
+    -- Options
+    vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, bufopts)
+    vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
+end
+
 -- C#
 require'lspconfig'.csharp_ls.setup{
     capabilities = capabilities,
-    on_attach = function()
-        -- Actions
-        vim.keymap.set("n", "gd", vim.lsp.buf.definition, {buffer=0})
-        vim.keymap.set("n", "gD", vim.lsp.buf.declaration, {buffer=0})
-        vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {buffer=0})
-        vim.keymap.set("n", "gr", vim.lsp.buf.references, {buffer=0})
-
-        -- Dialogs
-        vim.keymap.set("n", "K", vim.lsp.buf.hover, {buffer=0})
-        vim.keymap.set("n", "<c-s>", vim.lsp.buf.signature_help, {buffer=0})
-
-        -- Options
-        vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, {buffer=0})
-        vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {buffer=0})
-    end,
+    on_attach = on_attach,
 }
