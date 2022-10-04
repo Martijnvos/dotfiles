@@ -15,6 +15,8 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'saadparwaiz1/cmp_luasnip' " Snippets source for nvim-cmp
   Plug 'L3MON4D3/LuaSnip' " Snippets plugin
 
+  Plug 'Decodetalkers/csharpls-extended-lsp.nvim' " C# LSP decompile support
+
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-commentary'
   Plug 'editorconfig/editorconfig-vim'

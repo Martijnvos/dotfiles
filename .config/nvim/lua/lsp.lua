@@ -35,4 +35,7 @@ end
 require'lspconfig'.csharp_ls.setup{
     capabilities = capabilities,
     on_attach = on_attach,
+    handlers = {
+        ["textDocument/definition"] = require('csharpls_extended').handler, -- Support decompilation
+    },
 }
