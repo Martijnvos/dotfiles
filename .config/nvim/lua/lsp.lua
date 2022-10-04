@@ -8,6 +8,7 @@ end
 -- Vim Diagnostics
 vim.keymap.set("n", "<leader>dn", vim.diagnostic.goto_next, {buffer=0})
 vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, {buffer=0})
+vim.keymap.set("n", "<leader>dll", vim.diagnostic.setloclist, {buffer=0})
 
 vim.keymap.set("n", "<leader>dl", vim.diagnostic.open_float)
 
