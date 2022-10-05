@@ -12,8 +12,6 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'neovim/nvim-lspconfig' " Collection of configurations for built-in LSP client
   Plug 'hrsh7th/nvim-cmp' " Autocompletion plugin
   Plug 'hrsh7th/cmp-nvim-lsp' " LSP source for nvim-cmp
-  Plug 'saadparwaiz1/cmp_luasnip' " Snippets source for nvim-cmp
-  Plug 'L3MON4D3/LuaSnip' " Snippets plugin
 
   Plug 'Decodetalkers/csharpls-extended-lsp.nvim' " C# LSP decompile support
 
@@ -129,6 +127,7 @@ augroup vimrc
     \ | endif
 
     autocmd BufWritePre * :call TrimTrailingWhitespace()
+    "autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
 augroup END
 
 " Lua requires
