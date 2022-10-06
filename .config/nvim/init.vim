@@ -28,23 +28,6 @@ let gruvbox_contrast_dark='hard'
 colorscheme gruvbox
 highlight Normal ctermbg=0
 
-" Format status line
-set statusline=%#PmenuSel#
-set statusline+=%{StatuslineGit()}
-set statusline+=%#LineNr#
-set statusline+=\ %F " Full file path
-set statusline+=\ %m " Modified flag
-set statusline+=%r " Readonly flag
-set statusline+=%= " Separation point between left and right aligned items
-set statusline+=%#CursorColumn#
-set statusline+=\ %{HasPaste()}
-set statusline+=%y " Type of file
-set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
-set statusline+=\[%{&fileformat}\]
-set statusline+=\ %p%% " Percentage through file in lines
-set statusline+=\ %l:%c " Current line and column count respectively
-set statusline+=\ " Closing space for breathing room
-
 set splitbelow splitright " Splits open at the bottom and right, instead of top and left
 set number relativenumber " Show relative line numbering
 
@@ -101,18 +84,6 @@ fun! TrimTrailingWhitespace()
     endif
 endfun
 
-fun! HasPaste()
-    if &paste
-        return 'PASTE MODE  '
-    endif
-    return ''
-endfun
-
-fun! StatuslineGit()
-    let l:branchname = system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
-    return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
-endfun
-
 " Autocommands
 augroup vimrc
     " Remove all autocommands for the current group
@@ -133,3 +104,4 @@ augroup END
 " Lua requires
 lua require('lsp')
 lua require('autocomplete')
+lua require('statusline')
