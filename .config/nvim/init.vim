@@ -23,11 +23,6 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'morhetz/gruvbox'
 call plug#end()
 
-" General colorscheme
-let gruvbox_contrast_dark='hard'
-colorscheme gruvbox
-highlight Normal ctermbg=0
-
 " Functions
 fun! TrimTrailingWhitespace()
     if !&binary && &filetype != 'diff'
@@ -55,6 +50,7 @@ augroup vimrc
 augroup END
 
 " Lua requires
+lua require('colorscheme')
 lua require('keymaps')
 lua require('options')
 lua require('lsp')
