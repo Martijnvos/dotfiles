@@ -42,39 +42,6 @@ if has('persistent_undo')
     set undofile    " keep an undo file (undo changes after closing)
 endif
 
-" Leader key config
-" Use space as a leader key to make extra key combinations possible
-let mapleader = " "
-
-" Opens a new tab with the current buffer's path
-" Super useful when editing files in the same directory
-map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
-
-" Remaining remaps
-" Yank until last non-blank character of line
-nnoremap Y yg_
-
-" Center on search and line joining
-nnoremap n nzzzv
-nnoremap N Nzzzv
-nnoremap J mzJ`z
-
-" Undo with breakpoints
-inoremap , ,<c-g>u
-inoremap . .<c-g>u
-inoremap ! !<c-g>u
-inoremap ? ?<c-g>u
-
-" Repeat renaming with .
-nnoremap cn *``cgn
-nnoremap cN *``cgN
-
-" Prevent w from being necessary when moving between windows
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
-
 " Functions
 fun! TrimTrailingWhitespace()
     if !&binary && &filetype != 'diff'
@@ -102,6 +69,7 @@ augroup vimrc
 augroup END
 
 " Lua requires
+lua require('keymaps')
 lua require('lsp')
 lua require('autocomplete')
 lua require('statusline')
