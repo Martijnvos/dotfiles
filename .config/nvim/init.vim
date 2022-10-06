@@ -28,20 +28,6 @@ let gruvbox_contrast_dark='hard'
 colorscheme gruvbox
 highlight Normal ctermbg=0
 
-set splitbelow splitright " Splits open at the bottom and right, instead of top and left
-set number relativenumber " Show relative line numbering
-
-set path+=** " For clever completion with the :find command
-set cmdheight=2 " Give more space for displaying messages
-set ignorecase smartcase " Use case insensitive search, except when using capital letters
-set tabstop=4 " Tab size
-set shiftwidth=4 " Determine indentation per level
-set expandtab " Expand tab to spaces
-
-if has('persistent_undo')
-    set undofile    " keep an undo file (undo changes after closing)
-endif
-
 " Functions
 fun! TrimTrailingWhitespace()
     if !&binary && &filetype != 'diff'
@@ -70,6 +56,7 @@ augroup END
 
 " Lua requires
 lua require('keymaps')
+lua require('options')
 lua require('lsp')
 lua require('autocomplete')
 lua require('statusline')
