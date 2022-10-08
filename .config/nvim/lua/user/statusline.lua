@@ -4,9 +4,9 @@ local function fetch_git_branch()
     handle:close()
 
     if string.len(branchname) > 0 then
-        return ' ' .. branchname .. ' '
+        return " " .. branchname .. " "
     end
-    return ''
+    return ""
 end
 
 function construct_status_line()
@@ -19,7 +19,7 @@ function construct_status_line()
         "%r", -- Readonly flag
         "%=", -- Separation point between left and right aligned items
         "%#CursorColumn#",
-        vim.opt.paste:get() and ' PASTE ' or '',
+        vim.opt.paste:get() and " PASTE " or "",
         " %y", -- Type of file
         " " .. (string.len(vim.bo.fileencoding) > 0 and vim.bo.fileencoding or vim.o.encoding),
         " [" .. vim.bo.fileformat .. "]",
@@ -29,4 +29,4 @@ function construct_status_line()
     }
 end
 
-vim.opt.statusline = "%!luaeval('construct_status_line()')"
+vim.opt.statusline = "%!luaeval(\"construct_status_line()\")"

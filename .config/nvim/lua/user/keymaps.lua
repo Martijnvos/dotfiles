@@ -6,7 +6,7 @@ vim.g.mapleader = " "
 
 -- Opens a new tab with the current buffer's path
 -- Super useful when editing files in the same directory
-map_key("", "<leader>te", ':tabedit <c-r>=expand("%:p:h")<cr>/')
+map_key("", "<leader>te", ":tabedit <c-r>=expand(\"%:p:h\")<cr>/")
 
 -- Remaining remaps
 -- Yank until last non-blank character of line

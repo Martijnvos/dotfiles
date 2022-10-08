@@ -6,15 +6,15 @@ if package.loaded["cmp_nvim_lsp"] then
 end
 
 -- Vim Diagnostics
-vim.keymap.set("n", "<leader>dn", vim.diagnostic.goto_next, {buffer=0})
-vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, {buffer=0})
-vim.keymap.set("n", "<leader>dll", vim.diagnostic.setloclist, {buffer=0})
+vim.keymap.set("n", "<leader>dn", vim.diagnostic.goto_next, { buffer = 0 })
+vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, { buffer = 0 })
+vim.keymap.set("n", "<leader>dll", vim.diagnostic.setloclist, { buffer = 0 })
 
 vim.keymap.set("n", "<leader>dl", vim.diagnostic.open_float)
 
 -- General on_attach
 local on_attach = function(client,bufnr)
-    local bufopts = {buffer=bufnr}
+    local bufopts = { buffer = bufnr }
 
     -- Actions
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
@@ -33,10 +33,10 @@ local on_attach = function(client,bufnr)
 end
 
 -- C#
-require'lspconfig'.csharp_ls.setup{
+require"lspconfig".csharp_ls.setup{
     capabilities = capabilities,
     on_attach = on_attach,
     handlers = {
-        ["textDocument/definition"] = require('csharpls_extended').handler, -- Support decompilation
+        ["textDocument/definition"] = require("csharpls_extended").handler, -- Support decompilation
     },
 }

@@ -9,10 +9,10 @@ end
 
 local function jump_to_last_cursor_position(opts)
     local ft = vim.bo[opts.buf].filetype
-    if (ft:match('commit') or ft:match('rebase')) then
+    if (ft:match("commit") or ft:match("rebase")) then
         return
     end
-    local markpos = vim.api.nvim_buf_get_mark(0,'"')
+    local markpos = vim.api.nvim_buf_get_mark(0,"\"")
     local line = markpos[1]
     local col = markpos[2]
     if (line > 1) and (line <= vim.api.nvim_buf_line_count(0)) then
