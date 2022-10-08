@@ -23,32 +23,6 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'morhetz/gruvbox'
 call plug#end()
 
-" Functions
-fun! TrimTrailingWhitespace()
-    if !&binary && &filetype != 'diff'
-        let l:save = winsaveview()
-        keeppatterns %s/\s\+$//e
-        call winrestview(l:save)
-    endif
-endfun
-
-" Autocommands
-augroup vimrc
-    " Remove all autocommands for the current group
-    au!
-
-    " Jump to the last known cursor position.
-    " Don't when the position is invalid, when inside an event handler and for a
-    " commit message (it's likely a different one than last time).
-    autocmd BufReadPost *
-    \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
-    \ |   exe "normal! g`\""
-    \ | endif
-
-    autocmd BufWritePre * :call TrimTrailingWhitespace()
-    "autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
-augroup END
-
 " Lua requires
 lua require('colorscheme')
 lua require('keymaps')
@@ -56,3 +30,4 @@ lua require('options')
 lua require('lsp')
 lua require('autocomplete')
 lua require('statusline')
+lua require('autocommands')
