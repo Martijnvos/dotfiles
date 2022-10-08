@@ -1,0 +1,8 @@
+require "options"
+require "keymaps"
+require "plugins"
+require "statusline"
+require "colorscheme"
+require "lsp"
+require "autocomplete"
+require "autocommands"
