@@ -1,4 +1,8 @@
-local gruvbox_contrast_dark = "hard"
-
-vim.cmd [[ colorscheme gruvbox ]]
-vim.cmd [[ highlight Normal ctermbg=0 ]]
+vim.cmd [[
+    try
+        colorscheme gruvbox
+        highlight Normal ctermbg=0
+    catch
+        colorscheme default
+    endtry
+]]

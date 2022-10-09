@@ -1,5 +1,9 @@
 -- nvim-cmp setup
-local cmp = require "cmp"
+local present, cmp = pcall(require, "cmp")
+if not present then
+    return
+end
+
 cmp.setup {
   mapping = cmp.mapping.preset.insert({
     ["<C-d>"] = cmp.mapping.scroll_docs(-4),
