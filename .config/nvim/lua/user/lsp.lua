@@ -33,6 +33,7 @@ local on_attach = function(client,bufnr)
 end
 
 -- C#
+-- Install with 'dotnet tool install --global csharp-ls'
 require"lspconfig".csharp_ls.setup{
     capabilities = capabilities,
     on_attach = on_attach,
