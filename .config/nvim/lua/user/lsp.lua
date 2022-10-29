@@ -1,5 +1,6 @@
 -- Add additional capabilities supported by nvim-cmp
 local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 if package.loaded["cmp_nvim_lsp"] then
     capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
@@ -45,6 +46,23 @@ require"lspconfig".csharp_ls.setup{
 -- Typescript
 -- Install with 'npm install -g typescript typescript-language-server'
 require"lspconfig".tsserver.setup{
+    capabilities = capabilities,
+    on_attach = on_attach,
+}
+
+-- CSS / HTML / JSON / ESLint (not configured atm)
+-- Install with 'npm i -g vscode-langservers-extracted'
+require"lspconfig".cssls.setup{
+    capabilities = capabilities,
+    on_attach = on_attach,
+}
+
+require"lspconfig".html.setup{
+    capabilities = capabilities,
+    on_attach = on_attach,
+}
+
+require"lspconfig".jsonls.setup{
     capabilities = capabilities,
     on_attach = on_attach,
 }
