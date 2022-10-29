@@ -40,3 +40,10 @@ require"lspconfig".csharp_ls.setup{
         ["textDocument/definition"] = require("csharpls_extended").handler, -- Support decompilation
     },
 }
+
+-- Typescript
+-- Install with 'npm install -g typescript typescript-language-server'
+require"lspconfig".tsserver.setup{
+    capabilities = capabilities,
+    on_attach = on_attach,
+}
