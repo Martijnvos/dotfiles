@@ -1,37 +1,30 @@
-local ensure_packer = function()
-  local fn = vim.fn
-  local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-  if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
-    vim.cmd [[packadd packer.nvim]]
-    return true
-  end
-  return false
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
 end
+vim.opt.rtp:prepend(lazypath)
 
-local packer_bootstrap = ensure_packer()
-
-return require("packer").startup(function(use)
+require("lazy").setup({
   -- Functional
-  use "wbthomason/packer.nvim"
-  use "neovim/nvim-lspconfig" -- Collection of configurations for built-in LSP client
-  use "hrsh7th/nvim-cmp" -- Autocompletion plugin
-  use "hrsh7th/cmp-nvim-lsp" -- LSP source for nvim-cmp
-  use "saadparwaiz1/cmp_luasnip" -- Snippets source for nvim-cmp
-  use "L3MON4D3/LuaSnip" -- Snippets plugin
+  "neovim/nvim-lspconfig", -- Collection of configurations for built-in LSP client
+  "hrsh7th/nvim-cmp", -- Autocompletion plugin
+  "hrsh7th/cmp-nvim-lsp", -- LSP source for nvim-cmp
+  "saadparwaiz1/cmp_luasnip", -- Snippets source for nvim-cmp
+  "L3MON4D3/LuaSnip", -- Snippets plugin
 
-  use "Decodetalkers/csharpls-extended-lsp.nvim" -- C# LSP decompile support
+  "Decodetalkers/csharpls-extended-lsp.nvim", -- C# LSP decompilation support
 
-  use "tpope/vim-surround"
-  use "tpope/vim-commentary"
-  use "editorconfig/editorconfig-vim"
+  "tpope/vim-surround",
+  "tpope/vim-commentary",
+  "editorconfig/editorconfig-vim",
 
   -- Appearance
-  use "morhetz/gruvbox"
-
-  -- Automatically set up your configuration after cloning packer.nvim
-  -- Put this at the end after all plugins
-  if packer_bootstrap then
-    require('packer').sync()
-  end
-end)
+  "morhetz/gruvbox",
+})
