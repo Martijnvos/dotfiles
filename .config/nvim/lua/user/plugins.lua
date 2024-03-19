@@ -19,7 +19,24 @@ require("lazy").setup({
   "saadparwaiz1/cmp_luasnip", -- Snippets source for nvim-cmp
   "L3MON4D3/LuaSnip", -- Snippets plugin
 
-  "Decodetalkers/csharpls-extended-lsp.nvim", -- C# LSP decompilation support
+  --- C# LSP
+  {
+      "iabdelkareem/csharp.nvim",
+      dependencies = {
+          "williamboman/mason.nvim", -- Required, automatically installs omnisharp
+          "mfussenegger/nvim-dap",
+          "Tastyep/structlog.nvim", -- Optional, but highly recommended for debugging
+      },
+      config = function ()
+          require("mason").setup() -- Mason setup must run before csharp
+          require("csharp").setup({
+              lsp = {
+                  capabilities = require"user.lsp".capabilities,
+                  on_attach = require"user.lsp".on_attach(client, bufnr, require("csharp").go_to_definition),
+              }
+          })
+      end
+  },
 
   "tpope/vim-surround",
   "tpope/vim-commentary",
