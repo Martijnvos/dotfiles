@@ -61,6 +61,13 @@ require"lspconfig".jsonls.setup{
     on_attach = on_attach,
 }
 
+-- Markdown
+-- Install via package manager on OS of choice or build from source
+require"lspconfig".marksman.setup{
+    capabilities = capabilities,
+    on_attach = on_attach,
+}
+
 M.on_attach = on_attach
 M.capabilities = capabilities
 
