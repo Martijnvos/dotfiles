@@ -1,7 +1,14 @@
+require("catppuccin").setup {
+    color_overrides = {
+        mocha = {
+            base = "#131111",
+        },
+    }
+}
+
 vim.cmd [[
     try
-        colorscheme gruvbox
-        highlight Normal ctermbg=0
+        colorscheme catppuccin
     catch
         colorscheme default
     endtry

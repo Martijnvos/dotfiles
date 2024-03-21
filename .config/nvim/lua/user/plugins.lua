@@ -43,5 +43,5 @@ require("lazy").setup({
   "editorconfig/editorconfig-vim",
 
   -- Appearance
-  "morhetz/gruvbox",
+  { "catppuccin/nvim", name = "catppuccin", priority = 1000 }
 })
