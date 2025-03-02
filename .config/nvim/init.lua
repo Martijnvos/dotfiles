@@ -1,8 +1,0 @@
-require "user.options"
-require "user.keymaps"
-require "user.plugins"
-require "user.statusline"
-require "user.colorscheme"
-require "user.lsp"
-require "user.autocomplete"
-require "user.autocommands"
