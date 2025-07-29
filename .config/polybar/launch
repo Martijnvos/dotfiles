@@ -4,4 +4,4 @@
 killall -q polybar
 
 # Launch polybar
-polybar -c ~/.config/polybar/config main >>/tmp/polybarmain.log 2>&1 & disown
+polybar -c ~/.config/polybar/config.ini main >>/tmp/polybarmain.log 2>&1 & disown
